@@ -18,8 +18,11 @@ export class ClienteService {
     localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage));
   }
 
+  pesquisarClientes(nome: string) : Cliente[] {
+    return this.obterStorage();
+  }
   // Método para obter a lista de clientes do LocalStorage
-  obterStorage(): Cliente[] {
+  private obterStorage(): Cliente[] {
     // Tenta buscar o item salvo no LocalStorage com a chave REPO_CLIENTES
     const repositorioClientes = localStorage.getItem(ClienteService.REPO_CLIENTES);
 
