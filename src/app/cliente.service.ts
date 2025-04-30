@@ -18,17 +18,17 @@ export class ClienteService {
     localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage));
   }
 
-  atualizar(cliente: Cliente){
+  atualizar(cliente: Cliente) {
     const storage = this.obterStorage();
     storage.forEach(c => {
-      if(c.id === cliente.id){
+      if (c.id === cliente.id) {
         Object.assign(c, cliente);
       }
     })
     localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage));
   }
 
-  deletar(cliente: Cliente){
+  deletar(cliente: Cliente) {
     const storage = this.obterStorage();
     const novaLista = storage.filter(c => c.id !== cliente.id);
 
@@ -40,10 +40,10 @@ export class ClienteService {
     localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(novaLista));
   }
 
-  pesquisarClientes(nomeBusca: string) : Cliente[] {
+  pesquisarClientes(nomeBusca: string): Cliente[] {
     const clientes = this.obterStorage();
 
-    if(!nomeBusca){
+    if (!nomeBusca) {
       return clientes;
     }
 
@@ -53,11 +53,11 @@ export class ClienteService {
     return clientes.filter(cliente => cliente.nome?.indexOf(nomeBusca) !== -1)
   }
 
-  buscarClientePorId(id: string) : Cliente | undefined{
+  buscarClientePorId(id: string): Cliente | undefined {
     const clientes = this.obterStorage();
-    return clientes.find(cliente => cliente.id === id ); // encontrar só um elemento
+    return clientes.find(cliente => cliente.id === id); // encontrar só um elemento
   }
-  
+
   // Método para obter a lista de clientes do LocalStorage
   private obterStorage(): Cliente[] {
     // Tenta buscar o item salvo no LocalStorage com a chave REPO_CLIENTES

@@ -28,8 +28,8 @@
                         <div fxLayout="column" fxFlex="400px">
                             <mat-form-field class="full-width">
                                 <mat-label>CPF: *</mat-label>
-                                <input type="text" [(ngModel)]="cliente.cpf" name="cpf" mask="000.000.000-00" placeholder="Digite seu cpf"
-                                    matInput>
+                                <input type="text" [(ngModel)]="cliente.cpf" name="cpf" mask="000.000.000-00"
+                                    placeholder="Digite seu cpf" matInput>
                             </mat-form-field>
                         </div>
                     </div>
@@ -37,10 +37,34 @@
                         <div fxLayout="column" fxFlex="400px">
                             <mat-form-field class="full-width">
                                 <mat-label>Data de nascimento: *</mat-label>
-                                <input type="text" [(ngModel)]="cliente.dataNascimento" 
-                                mask="00/00/0000"
-                                name="dataNascimento"
-                                    placeholder="Digite sua data de nascimento" matInput>
+                                <input type="text" [(ngModel)]="cliente.dataNascimento" mask="00/00/0000"
+                                    name="dataNascimento" placeholder="Digite sua data de nascimento" matInput>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+                        <div fxLayout="column" fxFlex="400px">
+                            <mat-form-field class="full-width">
+                                <mat-label>UF: *</mat-label>
+                                <mat-select [(value)]="cliente.uf" (selectionChange)="carregarMunicipios($event)">
+                                    <mat-option *ngFor="let uf of estados" [value]="uf.sigla">
+                                        {{uf.sigla}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+                        <div fxLayout="column" fxFlex="400px">
+                            <mat-form-field class="full-width">
+                                <mat-label>Municipio: *</mat-label>
+                                <mat-select [(value)]="cliente.municipio">
+                                    <mat-option *ngFor="let m of municipio" [value]="m.nome">
+                                        {{m.nome}}
+                                    </mat-option>
+                                </mat-select>
                             </mat-form-field>
                         </div>
                     </div>
@@ -48,16 +72,16 @@
                 <mat-card-actions>
                     <ng-container *ngIf="!atualizando; else atualizarBotao">
                         <button mat-flat-button color="primary" type="submit">
-                          <mat-icon fontIcon="save"></mat-icon>
-                          Salvar
+                            <mat-icon fontIcon="save"></mat-icon>
+                            Salvar
                         </button>
-                      </ng-container>
-                      <ng-template #atualizarBotao>
+                    </ng-container>
+                    <ng-template #atualizarBotao>
                         <button mat-flat-button color="primary" type="submit">
-                          <mat-icon fontIcon="refresh"></mat-icon>
-                          Atualizar
+                            <mat-icon fontIcon="refresh"></mat-icon>
+                            Atualizar
                         </button>
-                      </ng-template>
+                    </ng-template>
                     <button mat-flat-button color="accent" class="ml-5">
                         <mat-icon fontIcon="backspace"></mat-icon>
                         Limpar
